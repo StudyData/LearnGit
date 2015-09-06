@@ -102,5 +102,18 @@
 	* `git branch --set-upstream branch-name origin/branch-name`
 * 本地新建的分支如果不推送到远程，对其他人就是不可见的；
 
+###标签
+* 创建标签
+	* `git tag v1.0`   打一个v1.0的新标签
+	* `git tag`		   查看所有的标签，注意标签不是按时间顺序列出，而是按字母排序的
+	* `git tag v0.9 6224937`   针对历史提交版本“6224937”打tag
+	* `git show v0.9`	查看指定标签信息
+	* `git tag -a v0.1 -m "version 0.1 released" 3628164`  创建带有说明的标签，用`-a`指定标签名，`-m`指定说明文字，`3628164`指定commit ID
+	* `git tag -d v0.1`	删除指定标签
+	* `git push origin <tagname>`	推送指定标签到远程
+	* `git push origin  --tags`		一次性推送全部尚未推送到远程的本地标签
+	* 删除已经推送到远程的标签
+		* `git tag -d v0.9`	先本地删除
+		* `git push origin :refs/tags/v0.9`	然后远程删除
 
 
