@@ -14,6 +14,7 @@
 7、`git log`								查看提交的历史记录
 
 	git log --pretty=online				单行显示历史记录
+	git log --graph						命令可以看到分支合并图
 
 8、`git reset --hard HEAD^`				回退到上一个版本，上上一个版本就是HEAD^^，当然往上100个版本写成HEAD~100。
 
@@ -58,4 +59,14 @@
 	* `git merge <name>`
 * 删除分支 
 	* `git branch -d <name>`
+
+###解决冲突
+* 当分支之间都有新的提交， 并且各自的修改是冲突的，在执行`git merge featurel`时是会提示冲突的。
+* 当出现这个问题的时候我们需求手动修改冲突文件，`git status`可以查看冲突的文件，修改文件后可以重新提交
+
+###分支管理策略
+* 普通模式合并
+	* `git merge --no-ff <name>`
+	* 实例：`git merge --no-ff -m "merge with no-ff" dev`  "merge with no-ff"是提交的log
+	* 普通模式合并，合并后的历史有分支，能看出曾经做过合并。 直接`git merge <name>`看不出曾经做过合并
 
