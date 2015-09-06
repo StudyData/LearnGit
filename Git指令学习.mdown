@@ -60,6 +60,7 @@
 	* `git merge <name>`
 * 删除分支 
 	* `git branch -d <name>`
+	* `git branch -D <name>` 强行删除
 
 ###解决冲突
 * 当分支之间都有新的提交， 并且各自的修改是冲突的，在执行`git merge featurel`时是会提示冲突的。
