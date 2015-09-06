@@ -6,3 +6,4 @@ Creating a new branch is quick and simple.
 Creating a new branch dev
 dev not '--no-ff merge'
 devtest modify
+test 多人合作修改。
