@@ -147,5 +147,8 @@
 	* 当前用户的Git配置文件放在用户主目录下的一个隐藏文件.gitconfig中：
 
 
+###资源地址
+* [Git Cheat Sheet](http://pan.baidu.com/s/1jGxjQL4#path=%252Fgit)
+* [Git官网](http://git-scm.com)
 
 
