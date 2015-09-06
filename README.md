@@ -1,51 +1,60 @@
-1、`git init`					  			创建版本库
-2、`git add readme.txt` 					添加readme.txt到仓库
-3、`git commit -m '修改说明'` 				提交文件到仓库， “-m”后面输入的是本次提交的说明
+###常用指令
+* `git init`
+	* 创建版本库
+* `git add readme.txt`
+	* 添加readme.txt到仓库，文件名用空格隔开，可以一次添加多个文件到仓库,如：`$ git add file2.txt file3.txt`
+* `git rm file` 							
+	* 从版本库中删除file文件
+* `git commit -m '修改说明'`
+	* 提交当前所有修改仓库， “-m”后面输入的是本次提交的说明
+* `git status`
+	* 查看仓库当前状态
+* `git diff`
+	* 查看difference
+* `git log`
+	* 查看提交的历史记录
+	* `git log --pretty=online`				
+		* 单行显示历史记录
+	* `git log --graph`						
+		* 命令可以看到分支合并图
+	* `git log --graph --pretty=oneline --abbrev-commit`	
+		* 查看分支合并图
 
-4、	`$ git add file1.txt` 				添加一个文件到仓库
-   		`$ git add file2.txt file3.txt` 		一次添加多个文件到仓库
-		`$ git commit -m "add 3 files."`      提交当前的所有修改
+###版本管理
+* `git reset --hard HEAD^`
+	* 回退到上一个版本，上上一个版本就是`HEAD^^`，当然往上100个版本写成`HEAD~100`。
+* `git reset --hard 3628164`
+	* 回退到指定版本。版本号没必要写全，前几位就可以了，Git会自动去找
+* `git reflog`
+	* 查看命令历史，以便确定要回到未来的哪个版本。
+* `git checkout -- file`
+	* 丢弃工作区的修改,实际是用版本库里的版本替换工作区的版本，无论工作区是修改还是删除，都可以“一键还原”。
+	* 如: `git checkout -- readme.txt` 把`readme.txt`文件在工作区的修改全部撤销,这里有两种情况：
+		* 一种是`readme.txt`自修改后还没有被放到暂存区，现在，撤销修改就回到和版本库一模一样的状态；
+		* 一种是`readme.txt`已经添加到暂存区后，又作了修改，现在，撤销修改就回到添加到暂存区后的状态。
+	* 注： `git checkout -- file`命令中的--很重要，没有--，就变成了“切换到另一个分支”的命令
+* `git reset HEAD file`					
+	* 可以把暂存区的修改撤销掉（unstage），重新放回工作区
 
+###远程仓库
+* SSH
+	* `ssh-keygen -t rsa -C "youremail@example.com"`
+		* 在用户主目录下，`.ssh`目录中创建`id_rsa`和`id_rsa.pub`两个文件
+		* 将`id.rsa.pub` 添加到Github的SSK Keys 中， 就可以直接与账号`youremail@example.com`关联。
 
-5、`git status`  							查看仓库当前状态
+* `git remote add origin https://github.com/xx-li/learngit.git` 
+	* 从这个仓库克隆出新的仓库，把一个已有的本地仓库与之关联
 
-6、`git diff` 								查看difference
+* `git push -u origin master`
+	* 把本地库的内容推送到远程，用git push命令，实际上是把当前分支master推送到远程。
+		* 加上了`-u`参数，Git不但会把本地的master分支内容推送到远程新的master分支，还会把本地的master分支和远程的master分支关联起来，在以后的推送或者拉取时就可以简化命令。
+		* 关联后，使用命令`git push -u origin master`第一次推送master分支的所有内容；
+		* 此后，每次本地提交后，只要有必要，就可以使用命令`git push origin master`推送最新修改；
 
-7、`git log`								查看提交的历史记录
-
-	git log --pretty=online				单行显示历史记录
-	git log --graph						命令可以看到分支合并图
-	git log --graph --pretty=oneline --abbrev-commit	查看分支合并图
-
-8、`git reset --hard HEAD^`				回退到上一个版本，上上一个版本就是HEAD^^，当然往上100个版本写成HEAD~100。
-
-9、`git reset --hard 3628164`				回退到指定版本。版本号没必要写全，前几位就可以了，Git会自动去找
-
-10、`git reflog` 							查看命令历史，以便确定要回到未来的哪个版本。
-
-11、`git checkout -- file	`				丢弃工作区的修改,实际是用版本库里的版本替换工作区的版本，无论工作区是修改还是删除，都可以“一键还原”。
-			命令`git checkout -- readme.txt`意思就是，把readme.txt文件在工作区的修改全部撤销，这里有两种情况：
-			一种是readme.txt自修改后还没有被放到暂存区，现在，撤销修改就回到和版本库一模一样的状态；
-			一种是readme.txt已经添加到暂存区后，又作了修改，现在，撤销修改就回到添加到暂存区后的状态。
-			注： `git checkout -- file`命令中的--很重要，没有--，就变成了“切换到另一个分支”的命令
-
-12、`git reset HEAD file`					可以把暂存区的修改撤销掉（unstage），重新放回工作区
-
-13、`git rm file` 							从版本库中删除file文件
-
-14、`git remote add origin https://github.com/xx-li/learngit.git` 		从这个仓库克隆出新的仓库，或者把一个已有的本地仓库与之关联
-
-15、`git push -u origin master`			把本地库的内容推送到远程，用git push命令，实际上是把当前分支master推送到远程。
-
-			加上了`-u`参数，Git不但会把本地的master分支内容推送到远程新的master分支，还会把本地的master分支和远程的master分支关联起来，在以后的推送或者拉取时就可以简化命令。
-
-			关联后，使用命令`git push -u origin master`第一次推送master分支的所有内容；
-			此后，每次本地提交后，只要有必要，就可以使用命令`git push origin master`推送最新修改；
-
-16、`git clone git@github.com:xx-li/gitskills.git` 	从远程库克隆一个本地库
-
-			还可以用https://github.com/xx-li/gitskills.git这样的地址。实际上，Git支持多种协议，默认的git://使用ssh，但也可以使用https等其他协议。
-			使用https除了速度慢以外，还有个最大的麻烦是每次推送都必须输入口令，但是在某些只开放http端口的公司内部就无法使用ssh协议而只能用https。
+* `git clone git@github.com:xx-li/gitskills.git` 	
+	* 从远程库克隆一个本地库
+	* 还可以用`https://github.com/xx-li/gitskills.git`这样的地址。实际上，Git支持多种协议，默认的git://使用ssh，但也可以使用https等其他协议。
+	* 使用https除了速度慢以外，还有个最大的麻烦是每次推送都必须输入口令，但是在某些只开放http端口的公司内部就无法使用ssh协议而只能用https。
 
 ###创建与合并分支
 * 查看分支 
