@@ -15,6 +15,7 @@
 
 	git log --pretty=online				单行显示历史记录
 	git log --graph						命令可以看到分支合并图
+	git log --graph --pretty=oneline --abbrev-commit	查看分支合并图
 
 8、`git reset --hard HEAD^`				回退到上一个版本，上上一个版本就是HEAD^^，当然往上100个版本写成HEAD~100。
 
@@ -70,3 +71,16 @@
 	* 实例：`git merge --no-ff -m "merge with no-ff" dev`  "merge with no-ff"是提交的log
 	* 普通模式合并，合并后的历史有分支，能看出曾经做过合并。 直接`git merge <name>`看不出曾经做过合并
 
+###bug分支
+* 修复bug时，我们会通过创建新的bug分支进行修复，然后合并，最后删除；
+当手头工作没有完成时，先把工作现场git stash一下，然后去修复bug，修复后，再git stash pop，回到工作现场。
+* 保存当前工作现场（等以后回复现场后继续工作）
+	* `git stash`
+* 查看保存的工作现场列表
+	* `git stash list`
+* 删除stash
+	* `git stash drop`
+* 恢复工作现场，并且删除stash
+	* `git stash pop`
+* 恢复指定的工作现场
+	* `git stash apply stash@{0}`
