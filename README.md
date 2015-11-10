@@ -146,6 +146,14 @@
 	* 每个仓库的Git配置文件都放在.git/config文件中，别名就在文件内容的[alias]后面，要删除别名，直接把对应的行删掉即可。
 	* 当前用户的Git配置文件放在用户主目录下的一个隐藏文件.gitconfig中：
 
+###删除历史提交的方法
+`git checkout --orphan latest_branch`
+`git add -A`
+`git commit -am 'commit message'
+`git branch -D master`
+`git branch -m master`
+`git push -f origin master`
+需要注意的是这样操作后，所有的历史提交都会被清空。 只会留最新的
 
 ###资源地址
 * [Git Cheat Sheet](http://pan.baidu.com/s/1jGxjQL4#path=%252Fgit)
