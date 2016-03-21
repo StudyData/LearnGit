@@ -13,7 +13,7 @@
 	* 查看difference
 * `git log`
 	* 查看提交的历史记录
-	* `git log --pretty=online`				
+	* `git log --pretty=oneline`				
 		* 单行显示历史记录
 	* `git log --graph`						
 		* 命令可以看到分支合并图
